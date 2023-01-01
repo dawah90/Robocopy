@@ -1,0 +1,34 @@
+### Copy Command ###
+
+robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:64 /COPYALL /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
+
+### Robocopy (Robust File Copy) explained ###
+
+/E	Copy subdirectories, including Empty ones
+/ZB	Use restartable mode; if access denied use Backup mode
+/MT	Do multithreaded copies for better performance ( /MT:8 = 8 threads ). Maximum 128 threads.
+/R:6	Retry 6 times
+/W:10	Wait 10 seconds between each attempt
+/V	Verbose output, including skipped files
+/FP	Log full path to each file
+/UNILOG	Log in Unicode-mode (åäö etc)
+/COPY:D - copy data
+/COPY:A - copy attributes
+/COPY:T - copy timestamps
+/COPY:S - copy security (NTFS ACLs)
+/COPY:O - copy ownership
+/COPY:U - copy auditing information
+/COPY:DATSOU - The option in Robocopy stands for "copy data, attributes, timestamps, security, ownership, and auditing information." It specifies that all of these attributes should be copied along with the files.
+/COPYALL - Stands for "copy all." It specifies that all file and directory attributes should be copied along with the files and directories. This includes the data, attributes, timestamps, security (NTFS ACLs), ownership, and auditing information.
+/DCOPY - What to copy for directories (default is DA, which does not consider the timestamps)
+
+### Examples ###
+
+#Copy directories, 8 threads, 6 retries, 10 second wait, verbose, full path, Unicode log:
+robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:8 /DCOPY:T /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
+
+#Copy everything, 16 threads, 6 retries, 10 second wait, verbose, full path, Unicode log:
+robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:16 /COPYALL /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
+
+#Copy everything (each option specified), 32 threads, 6 retries, 10 second wait, verbose, full path, Unicode log:
+robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:32 /COPY:DATSOU /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
