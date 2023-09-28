@@ -24,6 +24,10 @@ robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:64 /COPYALL /R:6 /W:
 
 ### Examples ###
 
+#Copy data, attributes and timestamps, 32 threads, 6 retries, 10 second wait, verbose, full path, Unicode log:
+#Use /COPY:DAT when the parent folder has inheritance enabled.
+robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:32 /COPY:DATS /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
+
 #Copy directories, 8 threads, 6 retries, 10 second wait, verbose, full path, Unicode log:
 robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:8 /DCOPY:T /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
 
@@ -32,3 +36,6 @@ robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:16 /COPYALL /R:6 /W:
 
 #Copy everything (each option specified), 32 threads, 6 retries, 10 second wait, verbose, full path, Unicode log:
 robocopy \\path\to\source\ \\path\to\destination /E /ZB /MT:32 /COPY:DATSOU /R:6 /W:10 /V /FP /UNILOG+:loggfil.txt
+
+
+
